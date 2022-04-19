@@ -26,4 +26,34 @@ public class RequestController {
 
         return requestRepo.findById(request.getUserId());
     }
+
+    @CrossOrigin(origins = "*")
+    @PutMapping(value = "/setStatus/{userId}",consumes = {"application/json"})
+    public Optional<Request> setStatus(@PathVariable String userId)
+    {
+        Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
+        if(request.isPresent())
+        {
+            Request newRequest= request.get();
+            newRequest.setStatus("Accepted");
+            requestRepo.save(newRequest);
+        }
+
+        return requestRepo.findById(Long.parseLong(userId));
+    }
+
+    @CrossOrigin(origins = "*")
+    @PutMapping(value = "/unsetStatus/{userId}",consumes = {"application/json"})
+    public Optional<Request> unsetStatus(@PathVariable String userId)
+    {
+        Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
+        if(request.isPresent())
+        {
+            Request newRequest= request.get();
+            newRequest.setStatus("Declined");
+            requestRepo.save(newRequest);
+        }
+
+        return requestRepo.findById(Long.parseLong(userId));
+    }
 }
