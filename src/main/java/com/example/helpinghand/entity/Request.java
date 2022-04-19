@@ -1,7 +1,5 @@
 package com.example.helpinghand.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -27,7 +25,7 @@ public class Request extends User{
     private String status;
 
     @Column(nullable = false)
-    private Date currentDate;
+    private Date date;
 
     @Column(nullable = false)
     private Date targetDate;
@@ -80,12 +78,12 @@ public class Request extends User{
         this.status = status;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public void setDate(Date currentDate) {
+        this.date = currentDate;
     }
 
     public Date getTargetDate() {

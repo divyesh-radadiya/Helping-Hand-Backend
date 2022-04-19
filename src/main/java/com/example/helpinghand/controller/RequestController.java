@@ -28,7 +28,7 @@ public class RequestController {
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping(value = "/setStatus/{userId}",consumes = {"application/json"})
+    @RequestMapping(value = "/setStatus/{userId}")
     public Optional<Request> setStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
@@ -43,7 +43,7 @@ public class RequestController {
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping(value = "/unsetStatus/{userId}",consumes = {"application/json"})
+    @RequestMapping(value = "/unsetStatus/{userId}")
     public Optional<Request> unsetStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
