@@ -34,20 +34,20 @@ public class Ngo{
     @Column(nullable = false)
     private int pinCode;
 
-    @Column(nullable = false)
+    @Column()
     private String details;
 
     @OneToMany()
-    @JoinColumn(name = "ngoId", insertable=false, updatable=false)
-    private List<Request> requests ;
-
-    @OneToMany
-    @JoinColumn(name = "ngoId", insertable=false, updatable=false)
-    private List<Donor> donors;
+    @JoinColumn(name = "ngoId")
+    private List<Request> requests = new ArrayList<>(); ;
 
     @OneToMany
     @JoinColumn(name = "ngoId")
-    private List<Volunteer> volunteers;
+    private List<Donor> donors =new ArrayList<>();;
+
+    @OneToMany
+    @JoinColumn(name = "ngoId")
+    private List<Volunteer> volunteers =new ArrayList<>();;
 
 
     public Long getNgoId() {
