@@ -9,6 +9,7 @@ import com.example.helpinghand.repository.RequestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,10 +19,16 @@ public class RequestController {
     @Autowired
     private RequestRepo requestRepo;
 
+    @Autowired
+    private NgoRepo ngoRepo;
+
+
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/add",consumes = {"application/json"})
-    public Optional<Request> addDonor(@RequestBody Request request)
+    public Optional<Request> addRequest(@RequestBody Request request)
     {
+        Ngo ngo=ngoRepo.findNgoByPinCode(request.getPinCode());
+        request.setNgo(ngo);
         requestRepo.save(request);
 
         return requestRepo.findById(request.getUserId());
@@ -55,5 +62,12 @@ public class RequestController {
         }
 
         return requestRepo.findById(Long.parseLong(userId));
+    }
+
+    @RequestMapping("/getRequests/{number}")
+    @ResponseBody
+    public List<Request> getRequests(@PathVariable String number)
+    {
+        return requestRepo.findAllByMobile(number);
     }
 }

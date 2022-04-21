@@ -1,5 +1,7 @@
 package com.example.helpinghand.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -29,6 +31,19 @@ public class Request extends User{
 
     @Column(nullable = false)
     private Date targetDate;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="ngoId", nullable=false)
+    private Ngo ngo;
+
+    public Ngo getNgo() {
+        return ngo;
+    }
+
+    public void setNgo(Ngo ngo) {
+        this.ngo = ngo;
+    }
 
     public String getItemName() {
         return itemName;
@@ -94,15 +109,6 @@ public class Request extends User{
         this.targetDate = targetDate;
     }
 
-    public Boolean getAccepted() {
-        return isAccepted;
-    }
 
-    public void setAccepted(Boolean accepted) {
-        isAccepted = accepted;
-    }
-
-    @Column(nullable = false)
-    private Boolean isAccepted;
 
 }

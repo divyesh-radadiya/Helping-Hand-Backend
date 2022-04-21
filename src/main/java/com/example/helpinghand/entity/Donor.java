@@ -12,6 +12,19 @@ public class Donor extends User{
     @Column(nullable = false)
     private String details;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="ngoId", nullable=false)
+    private Ngo ngo;
+
+    public Ngo getNgo() {
+        return ngo;
+    }
+
+    public void setNgo(Ngo ngo) {
+        this.ngo = ngo;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }

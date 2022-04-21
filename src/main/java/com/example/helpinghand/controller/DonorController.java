@@ -18,10 +18,15 @@ public class DonorController {
     @Autowired
     private DonorRepo donorRepo;
 
+    @Autowired
+    private NgoRepo ngoRepo;
+
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Donor> addDonor(@RequestBody Donor donor)
     {
+        Ngo ngo=ngoRepo.findNgoByPinCode(donor.getPinCode());
+        donor.setNgo(ngo);
         donorRepo.save(donor);
         return donorRepo.findById(donor.getUserId());
     }

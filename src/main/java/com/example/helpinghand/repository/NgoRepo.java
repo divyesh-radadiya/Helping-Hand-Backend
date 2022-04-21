@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface NgoRepo extends JpaRepository<Ngo, Serializable> {
+
     public Ngo findNgoByEmailId(String emailId) ;
+
+    public Ngo findNgoByPinCode(int pinCode) ;
 
 }
