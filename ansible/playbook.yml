@@ -5,12 +5,12 @@
     - name: remove docker images
       docker_image:
         name: divyeshradadiya/helpinghand-forntend
-        source: absent
+        state: absent
 
     - name: remove stopped container
       docker_container:
         name: helpinghand-forntend
-        source: absent
+        state: absent
 
     - name: Pull divyeshradadiya/helpinghand-forntend image
       docker_image:
