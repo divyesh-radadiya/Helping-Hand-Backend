@@ -17,27 +17,27 @@
         name: divyeshradadiya/helpinghand-backend
         source: pull
 
-   - name: Docker pull mysql
-        docker_image:
-          name: mysql
-          source: pull
+    - name: Docker pull mysql
+      docker_image:
+        name: mysql
+        source: pull
 
     - name: Remove mysql existing container
-        docker_container:
-          name: helpinghand-db
-          state: absent
+      docker_container:
+        name: helpinghand-db
+        state: absent
 
     - name: Create MYSQL container
-        docker_container:
-          name: helpinghand-db
-          image: mysql
-          networks:
-            - name: "helpinghand"
-          env:
-            MYSQL_ROOT_PASSWORD: Dvs2606@
-            MYSQL_DATABASE: helpinghand-db
-          ports:
-            - "3306:3306"
+      docker_container:
+        name: helpinghand-db
+        image: mysql
+        networks:
+          - name: "helpinghand"
+        env:
+          MYSQL_ROOT_PASSWORD: Dvs2606@
+          MYSQL_DATABASE: helpinghand-db
+        ports:
+          - "3306:3306"
 
     - name: remove docker images
       docker_image:
