@@ -37,7 +37,7 @@
           MYSQL_ROOT_PASSWORD: Dvs2606@
           MYSQL_DATABASE: helpinghand-db
         ports:
-          - "3306:3306"
+          - "3307:3306"
 
     - name: remove docker images
       docker_image:
