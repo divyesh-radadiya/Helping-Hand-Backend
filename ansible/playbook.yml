@@ -1,7 +1,44 @@
 ---
-- name: Pull and Run docker image of divyeshradadiya/helpinghand-forntend
+- name: Pull and Run docker images from divyeshradadiya/
   hosts: all
   tasks:
+    - name: remove docker images
+      docker_image:
+        name: divyeshradadiya/helpinghand-backend
+        state: absent
+
+    - name: remove stopped container
+      docker_container:
+        name: helpinghand-backend
+        state: absent
+
+    - name: Pull divyeshradadiya/helpinghand-backend image
+      docker_image:
+        name: divyeshradadiya/helpinghand-backend
+        source: pull
+
+   - name: Docker pull mysql
+        docker_image:
+          name: mysql
+          source: pull
+
+    - name: Remove mysql existing container
+        docker_container:
+          name: helpinghand-db
+          state: absent
+
+    - name: Create MYSQL container
+        docker_container:
+          name: helpinghand-db
+          image: mysql
+          networks:
+            - name: "helpinghand"
+          env:
+            MYSQL_ROOT_PASSWORD: Dvs2606@
+            MYSQL_DATABASE: helpinghand-db
+          ports:
+            - "3306:3306"
+
     - name: remove docker images
       docker_image:
         name: divyeshradadiya/helpinghand-forntend
@@ -17,5 +54,23 @@
         name: divyeshradadiya/helpinghand-forntend
         source: pull
 
-    - name: create web container
-      shell: docker run -d -p 3000:3000 --name helpinghand-forntend divyeshradadiya/helpinghand-forntend
+    - name: Create helpinghand-spring container
+      docker_container:
+        name: helpinghand-backend
+        image: divyeshradadiya/helpinghand-backend
+        networks:
+          - name: "helpinghand"
+        env:
+          DATABASE_HOST: helpinghand-db
+        ports:
+          - "8081:8081"
+
+
+    - name: Create helpinghand-react container
+      docker_container:
+        name: helpinghand-forntend
+        image: divyeshradadiya/helpinghand-forntend
+        networks:
+          - name: "helpinghand"
+        ports:
+          - "3000:3000"
