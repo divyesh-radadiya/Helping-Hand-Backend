@@ -32,7 +32,7 @@
         name: helpinghand-db
         image: mysql
         networks:
-          - name: "helpinghand"
+          - name: "bridge"
         env:
           MYSQL_ROOT_PASSWORD: Dvs2606@
           MYSQL_DATABASE: helpinghand-db
@@ -59,7 +59,7 @@
         name: helpinghand-backend
         image: divyeshradadiya/helpinghand-backend
         networks:
-          - name: "helpinghand"
+          - name: "bridge"
         env:
           DATABASE_HOST: helpinghand-db
         ports:
@@ -71,6 +71,6 @@
         name: helpinghand-forntend
         image: divyeshradadiya/helpinghand-forntend
         networks:
-          - name: "helpinghand"
+          - name: "bridge"
         ports:
           - "3000:3000"
