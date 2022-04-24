@@ -15,7 +15,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=dvs
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=helpinghand
+      - MYSQL_DATABASE=HelpingHand
 
     networks:
       - my-app
