@@ -12,8 +12,8 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING DATASOURCE URL:jdbc: mysql://mysql:3308/helpinghand
-      SPRING DATASOURCE USERNAME: "root"
+      SPRING DATASOURCE_URL: jdbc:mysql://mysql:3308/helpinghand
+      SPRING DATASOURCE_USERNAME: "root"
       SPRING DATASOURCE_PASSWORD: "root"
     networks:
       - my-app
