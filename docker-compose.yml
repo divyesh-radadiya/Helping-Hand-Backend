@@ -1,0 +1,37 @@
+version: '3'
+services:
+  react-app:
+    image: divyeshradadiya/helpinghand-forntend:latest
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - my-app
+  api-server:
+    image: divyeshradadiya/helpinghand-backend:latest
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING DATASOURCE URL:jdbc: mysql://mysql:3308/helpinghand
+      SPRING DATASOURCE USERNAME: "root"
+      SPRING DATASOURCE_PASSWORD: "root"
+    networks:
+      - my-app
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dvs
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=helpinghand
+
+    networks:
+      - my-app
+
+networks:
+  my-app:
+    driver: bridge

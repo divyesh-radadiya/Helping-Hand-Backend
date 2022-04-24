@@ -24,4 +24,11 @@ public class NgoController {
     {
         return ngoRepo.findNgoByEmailId("dradadiya990@gmail.com");
     }
+
+    @RequestMapping("/hello")
+    @ResponseBody
+    public String hello()
+    {
+        return ("dradadiya990@gmail.com");
+    }
 }

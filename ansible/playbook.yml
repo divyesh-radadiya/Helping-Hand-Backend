@@ -2,75 +2,13 @@
 - name: Pull and Run docker images from divyeshradadiya/
   hosts: all
   tasks:
-    - name: remove docker images
-      docker_image:
-        name: divyeshradadiya/helpinghand-backend
-        state: absent
+    - name: copy docker compose file from folder to remote host
+      copy:
+          src: ./docker-compose.yml
+          dest: ./
 
-    - name: remove stopped container
-      docker_container:
-        name: helpinghand-backend
-        state: absent
+    - name: pull images specifed in docker-compose
+      command: docker-compose -f ./docker-compose.yml pull
 
-    - name: Pull divyeshradadiya/helpinghand-backend image
-      docker_image:
-        name: divyeshradadiya/helpinghand-backend
-        source: pull
-
-    - name: Docker pull mysql
-      docker_image:
-        name: mysql
-        source: pull
-
-    - name: Remove mysql existing container
-      docker_container:
-        name: helpinghand-db
-        state: absent
-
-    - name: Create MYSQL container
-      docker_container:
-        name: helpinghand-db
-        image: mysql
-        networks:
-          - name: "bridge"
-        env:
-          MYSQL_ROOT_PASSWORD: Dvs2606@
-          MYSQL_DATABASE: helpinghand-db
-        ports:
-          - "3307:3306"
-
-    - name: remove docker images
-      docker_image:
-        name: divyeshradadiya/helpinghand-forntend
-        state: absent
-
-    - name: remove stopped container
-      docker_container:
-        name: helpinghand-forntend
-        state: absent
-
-    - name: Pull divyeshradadiya/helpinghand-forntend image
-      docker_image:
-        name: divyeshradadiya/helpinghand-forntend
-        source: pull
-
-    - name: Create helpinghand-spring container
-      docker_container:
-        name: helpinghand-backend
-        image: divyeshradadiya/helpinghand-backend
-        networks:
-          - name: "bridge"
-        env:
-          DATABASE_HOST: helpinghand-db
-        ports:
-          - "8081:8081"
-
-
-    - name: Create helpinghand-react container
-      docker_container:
-        name: helpinghand-forntend
-        image: divyeshradadiya/helpinghand-forntend
-        networks:
-          - name: "bridge"
-        ports:
-          - "3000:3000"
+    - name: run the pulled docker images in detached mode
+      command: docker-compose -f ./docker-compose.yml up -d
