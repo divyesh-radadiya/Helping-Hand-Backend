@@ -64,6 +64,13 @@ public class RequestController {
         return requestRepo.findById(Long.parseLong(userId));
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/delete/{userId}")
+    public void deleteStatus(@PathVariable String userId)
+    {
+        requestRepo.deleteById(Long.parseLong(userId));
+    }
+
     @RequestMapping("/getRequests/{number}")
     @ResponseBody
     public List<Request> getRequests(@PathVariable String number)
