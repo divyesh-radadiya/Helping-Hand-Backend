@@ -6,9 +6,10 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - my-app
+      - dvs-app
 
-  mysql:
+  hhsqldb:
+    container_name: hhsqldb
     image: mysql
     ports:
       - "3308:3306"
@@ -18,7 +19,7 @@ services:
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=HelpingHand
     networks:
-      - my-app
+      - dvs-app
 
   springboot-server:
     depends_on:
@@ -27,12 +28,13 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING DATASOURCE_URL: jdbc:mysql://mysql:3306/helpinghand/
-      SPRING DATASOURCE_USERNAME: "root"
-      SPRING DATASOURCE_PASSWORD: "root"
+      MYSQL_HOST: hhsqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+
     networks:
-      - my-app
+      - dvs-app
 
 networks:
-  my-app:
-    driver: bridge
+  dvs-app:
