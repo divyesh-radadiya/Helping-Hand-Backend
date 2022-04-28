@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     networks:
       - my-app
+
   mysql:
     image: mysql
     ports:
@@ -16,24 +17,21 @@ services:
       - MYSQL_USER=dvs
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=HelpingHand
-
     networks:
       - my-app
 
-  api-server:
+  springboot-server:
     depends_on:
       - mysql
     image: divyeshradadiya/helpinghand-backend:latest
     ports:
       - "8081:8081"
     environment:
-      SPRING DATASOURCE_URL: jdbc:mysql://mysql:3306/helpinghand
+      SPRING DATASOURCE_URL: jdbc:mysql://mysql:3306/helpinghand/
       SPRING DATASOURCE_USERNAME: "root"
       SPRING DATASOURCE_PASSWORD: "root"
     networks:
       - my-app
-
-
 
 networks:
   my-app:
