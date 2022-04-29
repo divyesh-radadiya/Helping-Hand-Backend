@@ -10,21 +10,16 @@ services:
 
   servernode:
     image: divyeshradadiya/helpinghand-backend:latest
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 5
-        window: 120s
     ports:
       - "8081:8081"
     depends_on:
       - "dbnode"
     environment:
       MYSQL_HOST: "dbnode"
-      MYSQL_USER: "dvs"
-      MYSQL_PASSWORD: "root"
       MYSQL_PORT: "3306"
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+
     networks:
       net_ubuntu:
         ipv4_address: 172.28.1.6
@@ -33,12 +28,10 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - /home/divyesh/dbnode:/var/lib/mysql
+      - /home/divyesh/myFol/dbnode:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "HelpingHand"
-      MYSQL_ROOT_USER: "dvs"
-      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: HelpingHand
     networks:
       net_ubuntu:
         ipv4_address: 172.28.1.7
@@ -49,6 +42,3 @@ networks:
       driver: default
       config:
         - subnet: 172.28.1.0/24
-
-
-
