@@ -4,6 +4,10 @@ services:
     image: divyeshradadiya/helpinghand-forntend:latest
     ports:
       - "3000:3000"
+    depends_on:
+      - "servernode"
+    environment:
+      REACT_APP_BASE_API: servernode
     networks:
       net_ubuntu:
         ipv4_address: 172.28.1.5

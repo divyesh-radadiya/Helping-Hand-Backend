@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/ngo")
 @CrossOrigin("*")
 public class NgoController {
+
     @Autowired
     private NgoRepo ngoRepo;
 
@@ -20,5 +21,12 @@ public class NgoController {
     public Ngo getNgo(@PathVariable String email)
     {
         return ngoRepo.findNgoByEmailId(email);
+    }
+
+    @PostMapping(value = "/add",consumes = {"application/json"})
+    @ResponseBody
+    public Ngo addNgo(@RequestBody Ngo ngo)
+    {
+        return ngoRepo.save(ngo);
     }
 }
