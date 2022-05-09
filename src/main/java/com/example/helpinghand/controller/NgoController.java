@@ -5,6 +5,8 @@ import com.example.helpinghand.entity.Request;
 import com.example.helpinghand.repository.NgoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @RequestMapping("/ngo")
 @CrossOrigin("*")
 public class NgoController {
+    private static final Logger logger = LogManager.getLogger("HHController");
 
     @Autowired
     private NgoRepo ngoRepo;
@@ -20,6 +23,7 @@ public class NgoController {
     @ResponseBody
     public Ngo getNgo(@PathVariable String email)
     {
+        logger.info("Get Ngo details with email:" + email);
         return ngoRepo.findNgoByEmailId(email);
     }
 
@@ -27,6 +31,9 @@ public class NgoController {
     @ResponseBody
     public Ngo addNgo(@RequestBody Ngo ngo)
     {
+        logger.info("Get Ngo added:" + ngo.getName());
+
         return ngoRepo.save(ngo);
     }
 }
+     
