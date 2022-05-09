@@ -4,6 +4,8 @@ import com.example.helpinghand.entity.Donor;
 import com.example.helpinghand.entity.Ngo;
 import com.example.helpinghand.repository.DonorRepo;
 import com.example.helpinghand.repository.NgoRepo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class DonorController {
     @Autowired
     private DonorRepo donorRepo;
+    private static final Logger logger = LogManager.getLogger("HHController");
 
     @Autowired
     private NgoRepo ngoRepo;
@@ -25,6 +28,7 @@ public class DonorController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Donor> addDonor(@RequestBody Donor donor)
     {
+        logger.info("Add Donor:" + donor.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(donor.getPinCode());
         donor.setNgo(ngo);
         donorRepo.save(donor);
