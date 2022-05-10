@@ -30,7 +30,7 @@ public class RequestController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Request> addRequest(@RequestBody Request request)
     {
-        logger.info("Request added:" + request.getMobile());
+        logger.info("Request added with mobile:" + request.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(request.getPinCode());
         request.setNgo(ngo);
         requestRepo.save(request);
@@ -43,7 +43,7 @@ public class RequestController {
     public Optional<Request> setStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
-        logger.info("Set status:" + userId);
+        logger.info("Request accepted:" + userId);
         if(request.isPresent())
         {
             Request newRequest= request.get();
@@ -59,7 +59,7 @@ public class RequestController {
     public Optional<Request> unsetStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
-        logger.info("Unset status:" + userId);
+        logger.info("Request declined:" + userId);
         if(request.isPresent())
         {
             Request newRequest= request.get();
@@ -74,7 +74,7 @@ public class RequestController {
     @RequestMapping(value = "/delete/{userId}")
     public void deleteStatus(@PathVariable String userId)
     {
-        logger.info("delete status:" + userId);
+        logger.info("Request deleted:" + userId);
         requestRepo.deleteById(Long.parseLong(userId));
     }
 
@@ -82,7 +82,7 @@ public class RequestController {
     @ResponseBody
     public List<Request> getRequests(@PathVariable String number)
     {
-        logger.info("get request :" + number);
+        logger.info("Get request with mobile:" + number);
         return requestRepo.findAllByMobile(number);
     }
 }
