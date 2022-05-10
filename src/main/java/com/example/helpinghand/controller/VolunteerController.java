@@ -28,7 +28,7 @@ public class VolunteerController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Volunteer> addVolunteer(@RequestBody Volunteer volunteer)
     {
-        logger.info("Add volunteer:" + volunteer.getMobile());
+        logger.info("Volunteer added with mobile:" + volunteer.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(volunteer.getPinCode());
         volunteer.setNgo(ngo);
         volunteerRepo.save(volunteer);

@@ -57,7 +57,8 @@ pipeline {
         }
         stage('9. Ansible Deploy') {
             steps {
-                ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible/inventory', playbook: 'ansible/playbook.yml'
+                sh 'chmod 400 /var/lib/jenkins/divyesh.pem'
+                sh 'ansible-playbook -v -i ansible/inventory ansible/playbook.yml'
 
             }
         }

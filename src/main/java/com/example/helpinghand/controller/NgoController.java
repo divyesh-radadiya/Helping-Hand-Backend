@@ -31,7 +31,7 @@ public class NgoController {
     @ResponseBody
     public Ngo addNgo(@RequestBody Ngo ngo)
     {
-        logger.info("Get Ngo added:" + ngo.getName());
+        logger.info("Ngo added with mobile:" + ngo.getName());
 
         return ngoRepo.save(ngo);
     }

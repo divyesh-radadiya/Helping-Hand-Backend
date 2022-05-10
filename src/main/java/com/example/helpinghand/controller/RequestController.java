@@ -30,7 +30,7 @@ public class RequestController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Request> addRequest(@RequestBody Request request)
     {
-        logger.info("Add request :" + request.getMobile());
+        logger.info("Request added:" + request.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(request.getPinCode());
         request.setNgo(ngo);
         requestRepo.save(request);
