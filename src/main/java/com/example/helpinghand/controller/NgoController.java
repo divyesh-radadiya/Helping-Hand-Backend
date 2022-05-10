@@ -36,4 +36,3 @@ public class NgoController {
         return ngoRepo.save(ngo);
     }
 }
-     

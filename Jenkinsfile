@@ -55,10 +55,9 @@ pipeline {
                 }
             }
         }
-
         stage('9. Ansible Deploy') {
             steps {
-
+                sh 'chmod 400 ansible/divyesh.pem'
                 ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible/inventory', playbook: 'ansible/playbook.yml'
 
             }
