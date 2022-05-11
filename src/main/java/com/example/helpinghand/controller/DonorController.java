@@ -28,10 +28,13 @@ public class DonorController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Donor> addDonor(@RequestBody Donor donor)
     {
-        logger.info("Donor added with mobile:" + donor.getMobile());
+//        logger.info("Donor added with mobile:" + donor.getMobile());
+
         Ngo ngo=ngoRepo.findNgoByPinCode(donor.getPinCode());
         donor.setNgo(ngo);
         donorRepo.save(donor);
+        logger.info("[DONOR] - INPUT:" + "DonorAdded" + " , OUTPUT:" + donor.getMobile());
+
         return donorRepo.findById(donor.getUserId());
     }
 }

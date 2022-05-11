@@ -28,10 +28,12 @@ public class VolunteerController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Volunteer> addVolunteer(@RequestBody Volunteer volunteer)
     {
-        logger.info("Volunteer added with mobile:" + volunteer.getMobile());
+//        logger.info("Volunteer added with mobile:" + volunteer.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(volunteer.getPinCode());
         volunteer.setNgo(ngo);
         volunteerRepo.save(volunteer);
+        logger.info("[VOLUNTEER] - INPUT:" + "VolunteerAdded" + " , OUTPUT:" + volunteer.getMobile());
+
         return volunteerRepo.findById(volunteer.getUserId());
     }
 }

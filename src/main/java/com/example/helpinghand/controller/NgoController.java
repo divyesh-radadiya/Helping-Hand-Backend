@@ -23,7 +23,9 @@ public class NgoController {
     @ResponseBody
     public Ngo getNgo(@PathVariable String email)
     {
-        logger.info("Get Ngo details with email:" + email);
+//        logger.info("Get Ngo details with email:" + email);
+        logger.info("[NGO] - INPUT:" + "NgoGetDetails" + " , OUTPUT:" + email);
+//        logger.info("[NGO] - Action:" + "Get_Ngo_Details" + " , Data:" + email);
         return ngoRepo.findNgoByEmailId(email);
     }
 
@@ -31,7 +33,9 @@ public class NgoController {
     @ResponseBody
     public Ngo addNgo(@RequestBody Ngo ngo)
     {
-        logger.info("Ngo added with mobile:" + ngo.getName());
+//        logger.info("Ngo added with mobile:" + ngo.getName());
+        logger.info("[NGO] - INPUT:" + "NgoAdded" + " , OUTPUT:" + ngo.getName());
+
 
         return ngoRepo.save(ngo);
     }
