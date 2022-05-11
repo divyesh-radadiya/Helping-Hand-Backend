@@ -1,6 +1,6 @@
 ---
 - name: Pull and Run docker images from divyeshradadiya/
-  hosts: all
+  hosts: ubuntu
   tasks:
     - name: copy docker compose file from folder to remote host
       copy:
