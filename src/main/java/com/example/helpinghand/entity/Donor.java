@@ -17,6 +17,8 @@ public class Donor extends User{
     @JoinColumn(name="ngoId", nullable=false)
     private Ngo ngo;
 
+
+
     public Ngo getNgo() {
         return ngo;
     }
