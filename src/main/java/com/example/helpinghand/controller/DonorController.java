@@ -33,7 +33,7 @@ public class DonorController {
         Ngo ngo=ngoRepo.findNgoByPinCode(donor.getPinCode());
         donor.setNgo(ngo);
         donorRepo.save(donor);
-        logger.info("[DONOR] - INPUT:" + "DonorAdded" + " , OUTPUT:" + donor.getMobile());
+        logger.info("[Add Donor] - ["+donor.getMobile()+"]" );
 
         return donorRepo.findById(donor.getUserId());
     }

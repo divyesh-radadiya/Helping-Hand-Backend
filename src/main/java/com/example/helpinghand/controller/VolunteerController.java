@@ -32,7 +32,8 @@ public class VolunteerController {
         Ngo ngo=ngoRepo.findNgoByPinCode(volunteer.getPinCode());
         volunteer.setNgo(ngo);
         volunteerRepo.save(volunteer);
-        logger.info("[VOLUNTEER] - INPUT:" + "VolunteerAdded" + " , OUTPUT:" + volunteer.getMobile());
+//        logger.info("[VOLUNTEER] - INPUT:" + "VolunteerAdded" + " , OUTPUT:" + volunteer.getMobile());
+        logger.info("[Add Volunteer] - ["+volunteer.getMobile()+"]" );
 
         return volunteerRepo.findById(volunteer.getUserId());
     }

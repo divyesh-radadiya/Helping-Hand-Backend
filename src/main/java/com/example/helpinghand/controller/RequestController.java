@@ -30,12 +30,12 @@ public class RequestController {
     @PostMapping(value = "/add",consumes = {"application/json"})
     public Optional<Request> addRequest(@RequestBody Request request)
     {
-//        logger.info("Request added with mobile:" + request.getMobile());
         Ngo ngo=ngoRepo.findNgoByPinCode(request.getPinCode());
         request.setNgo(ngo);
         requestRepo.save(request);
 
-        logger.info("[REQUEST] - INPUT:" + "RequestAdded" + " , OUTPUT:" + request.getMobile());
+        logger.info("[Add Request] - ["+request.getMobile()+"]" );
+
         return requestRepo.findById(request.getUserId());
     }
 
@@ -44,14 +44,13 @@ public class RequestController {
     public Optional<Request> setStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
-//        logger.info("Request accepted:" + userId);
         if(request.isPresent())
         {
             Request newRequest= request.get();
             newRequest.setStatus("Accepted");
             requestRepo.save(newRequest);
         }
-        logger.info("[REQUEST] - INPUT:" + "RequestAccepted" + " , OUTPUT:" + userId);
+        logger.info("[Request Accepted] - ["+userId+"]" );
 
         return requestRepo.findById(Long.parseLong(userId));
     }
@@ -61,15 +60,13 @@ public class RequestController {
     public Optional<Request> unsetStatus(@PathVariable String userId)
     {
         Optional<Request> request = requestRepo.findById(Long.parseLong(userId));
-//        logger.info("Request declined:" + userId);
         if(request.isPresent())
         {
             Request newRequest= request.get();
             newRequest.setStatus("Declined");
             requestRepo.save(newRequest);
         }
-        logger.info("[REQUEST] - INPUT:" + "RequestDeclined" + " , OUTPUT:" + userId);
-
+        logger.info("[Request Declined] - ["+userId+"]" );
         return requestRepo.findById(Long.parseLong(userId));
     }
 
@@ -77,9 +74,7 @@ public class RequestController {
     @RequestMapping(value = "/delete/{userId}")
     public void deleteStatus(@PathVariable String userId)
     {
-//        logger.info("Request deleted:" + userId);
-        logger.info("[REQUEST] - INPUT:" + "RequestDeleted" + " , OUTPUT:" + userId);
-
+        logger.info("[Request Deleted] - ["+userId+"]" );
         requestRepo.deleteById(Long.parseLong(userId));
     }
 
@@ -87,9 +82,7 @@ public class RequestController {
     @ResponseBody
     public List<Request> getRequests(@PathVariable String number)
     {
-//        logger.info("Get request with mobile:" + number);
-        logger.info("[REQUEST] - INPUT:" + "RequestGetDetails" + " , OUTPUT:" + number);
-
+        logger.info("[Get Request] - ["+number+"]" );
         return requestRepo.findAllByMobile(number);
     }
 }

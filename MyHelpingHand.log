@@ -1,9 +1,4 @@
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:11:54:47 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:getDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:12:04:49 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:NgoGetDetails , OUTPUT:dradadiya990@gmail.com
-11/May/2022:12:50:39 +0530 [RequestController.java] [INFO] HHController [REQUEST] - INPUT:RequestDeleted , OUTPUT:5
-11/May/2022:12:50:42 +0530 [NgoController.java] [INFO] HHController [NGO] - INPUT:NgoGetDetails , OUTPUT:dradadiya990@gmail.com
+2022-05-11 23:11:45 [RequestController.java] [INFO] HHController [Request Deleted] - [7]
+2022-05-11 23:11:51 [NgoController.java] [INFO] HHController [NgoGetDetails] - [dradadiya990@gmail.com]
+2022-05-11 23:12:19 [RequestController.java] [INFO] HHController [Request Declined] - [6]
+2022-05-11 23:12:22 [NgoController.java] [INFO] HHController [NgoGetDetails] - [dradadiya990@gmail.com]
