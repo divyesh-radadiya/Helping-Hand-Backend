@@ -7,7 +7,7 @@ services:
     depends_on:
       - "servernode"
     environment:
-      REACT_APP_BASE_API: "localhost"
+      REACT_APP_BASE_API: "ec2-34-201-24-252.compute-1.amazonaws.com"
     networks:
       net_ubuntu:
         ipv4_address: 172.28.1.5

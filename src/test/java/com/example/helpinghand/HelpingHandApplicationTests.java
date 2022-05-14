@@ -153,5 +153,36 @@ class HelpingHandApplicationTests extends AbstractTest{
 
 
     }
+    @Test
+    @Order(4)
+    void  volunteerTest() throws Exception
+    {
+        String req="";
+        try {
+            File file = new File("src/test/java/com/example/helpinghand/vol.json");
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(new FileReader(file));
+
+            req = obj.toString();
+        } catch (IOException | ParseException e) {
+            System.out.println(e);
+        }
+        String  uri = "/volunteer/add";
+        MvcResult mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(req)
+                .accept(MediaType.APPLICATION_JSON)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+
+        String content = mvcResult.getResponse().getContentAsString();
+        try {
+            assertEquals( 200, status);
+            System.out.println("Register volunteer : Success");
+        }catch(Exception e) {
+            System.out.println("Register volunteer : Fail");
+        }
+
+
+    }
 
 }
