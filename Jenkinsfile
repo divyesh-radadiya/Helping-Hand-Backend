@@ -57,7 +57,8 @@ pipeline {
         }
         stage('9. Ansible Deploy') {
             steps {
-                sh 'ansible-playbook -v -i ansible/inventory ansible/playbook.yml'
+                 sh 'chmod 400 ./ansible/divyesh.pem'
+                 sh 'yes | ansible-playbook -v -i ansible/inventory ansible/playbook.yml'
             }
         }
     }
