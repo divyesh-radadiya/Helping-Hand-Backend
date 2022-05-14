@@ -3,7 +3,7 @@ services:
   clientnode:
     image: divyeshradadiya/helpinghand-forntend:latest
     ports:
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - "servernode"
     environment:
@@ -23,6 +23,8 @@ services:
       MYSQL_PORT: "3306"
       MYSQL_USER: root
       MYSQL_PASSWORD: root
+    volumes:
+      - /home/divyesh/myFol/servernode:/HHLogs
     networks:
       net_ubuntu:
         ipv4_address: 172.28.1.6
