@@ -8,7 +8,7 @@
           dest: ./
 
     - name: sudo pull images specifed in docker-compose
-      command: docker-compose -f ./docker-compose.yml pull
+      command: sudo docker-compose -f ./docker-compose.yml pull
 
     - name: run the pulled docker images in detached mode
       command: sudo docker-compose -f ./docker-compose.yml up -d
